@@ -1,41 +1,24 @@
 import PropTypes from 'prop-types';
+import { nanoid } from 'nanoid';
 
 import { FeedbackButton } from './FeedbackOptions.styled';
 import { Box } from 'components/Box';
 import { capitalLetter } from 'helpers';
 
-export const FeedbackOptions = ({
-  onLeaveFeedback,
-  options: [good, neutral, bad],
-}) => {
+export const FeedbackOptions = ({ onLeaveFeedback, options }) => {
   return (
     <Box display="flex" justifyContent="center" mt={2}>
-      <FeedbackButton
-        type="button"
-        onClick={() => {
-          onLeaveFeedback(good);
-        }}
-      >
-        {capitalLetter('good')}
-      </FeedbackButton>
-
-      <FeedbackButton
-        type="button"
-        onClick={() => {
-          onLeaveFeedback(neutral);
-        }}
-      >
-        {capitalLetter('neutral')}
-      </FeedbackButton>
-
-      <FeedbackButton
-        type="button"
-        onClick={() => {
-          onLeaveFeedback(bad);
-        }}
-      >
-        {capitalLetter('bad')}
-      </FeedbackButton>
+      {options.map(option => (
+        <FeedbackButton
+          key={nanoid()}
+          type="button"
+          onClick={() => {
+            onLeaveFeedback(option);
+          }}
+        >
+          {capitalLetter(option)}
+        </FeedbackButton>
+      ))}
     </Box>
   );
 };

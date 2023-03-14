@@ -55,7 +55,7 @@ export const App = () => {
       <Box mt={3}>
         <Title text="statistics" />
 
-        {good || neutral || bad ? (
+        {countTotalFeedback() ? (
           <Statistics
             good={good}
             neutral={neutral}
